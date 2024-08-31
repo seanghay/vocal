@@ -116,6 +116,6 @@ def get_model(device: str):
   from huggingface_hub import hf_hub_download
 
   device = device.lower()
-  return torch.load(
+  return torch.jit.load(
     hf_hub_download("seanghay/vocalfile", f"UVR-MDX-NET-Voc_FT.{device}.pt")
   )

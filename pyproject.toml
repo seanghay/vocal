@@ -1,7 +1,7 @@
 [project]
 name = "vocal"
 description = "A vocal source separation"
-version = "0.0.1"
+version = "0.0.3"
 dependencies = ["tqdm", "torch", "numpy", "huggingface-hub"]
 
 license = { file = "LICENSE" }

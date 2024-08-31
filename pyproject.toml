@@ -2,7 +2,7 @@
 name = "vocal"
 description = "A vocal source separation"
 version = "0.0.3"
-dependencies = ["tqdm", "torch", "numpy", "huggingface-hub"]
+dependencies = ["tqdm", "torch", "numpy", "huggingface-hub", "click"]
 
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -23,6 +23,8 @@ Repository = "https://github.com/seanghay/vocal"
 name = "Seanghay Yath"
 email = "seanghay.dev@gmail.com"
 
+[project.scripts]
+vocali = "vocal:cli.cli"
 
 [build-system]
 requires = ["hatchling"]

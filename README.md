@@ -2,6 +2,11 @@
 
 A vocal source separation
 
+
+```
+pip install vocal
+```
+
 ```python
 import librosa
 import soundfile as sf

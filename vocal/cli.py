@@ -36,8 +36,15 @@ from typing import List
   multiple=True,
 )
 @click.option("-q", "--quiet", default=False, help="Quiet", is_flag=True)
+@click.option("-c", "--chunk", type=click.INT, default=30, help="Audio chunk size")
 def cli(
-  input: Path, output: Path, device: str, recursive: bool, quiet: bool, glob: List[str]
+  input: Path,
+  output: Path,
+  device: str,
+  recursive: bool,
+  quiet: bool,
+  glob: List[str],
+  chunk: int,
 ):
   model = get_model(device)
   if input.is_dir():
@@ -51,10 +58,12 @@ def cli(
       target_file = output / file.relative_to(Path(input))
       target_file.parent.mkdir(exist_ok=True)
       audio, sr = librosa.load(file, sr=44100, mono=False)
-      audio_data = separate_vocal(model, audio, device=device, silent=quiet)
+      audio_data = separate_vocal(
+        model, audio, device=device, silent=quiet, chunks=chunk
+      )
       soundfile.write(target_file, audio_data.T, samplerate=sr)
     return
 
   audio, sr = librosa.load(input, sr=44100, mono=False)
-  audio_data = separate_vocal(model, audio, device=device, silent=quiet)
+  audio_data = separate_vocal(model, audio, device=device, silent=quiet, chunks=chunk)
   soundfile.write(output, audio_data.T, samplerate=sr)

@@ -2,7 +2,7 @@
 name = "vocal"
 description = "A vocal source separation"
 version = "0.0.3"
-dependencies = ["tqdm", "torch", "numpy", "huggingface-hub", "click"]
+dependencies = ["tqdm", "torch", "numpy", "huggingface-hub", "click", "soundfile"]
 
 license = { file = "LICENSE" }
 readme = "README.md"

@@ -25,7 +25,7 @@ from typing import List
 @click.option(
   "-d",
   "--device",
-  default="cuda" if torch.cuda.is_available() else "cpu",
+  default="cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu",
   help="Device",
 )
 @click.option(

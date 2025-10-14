@@ -141,6 +141,9 @@ def get_model(device: str):
   from huggingface_hub import hf_hub_download
 
   device = device.lower()
+  variant = "cuda" if device == "mps" else device
+  
   return torch.jit.load(
-    hf_hub_download("seanghay/vocalfile", f"UVR-MDX-NET-Voc_FT.{device}.pt")
+    hf_hub_download("seanghay/vocalfile", f"UVR-MDX-NET-Voc_FT.{variant}.pt"),
+    map_location=device if device == "mps" else None
   ).to(device)  # Move model to GPU immediately
